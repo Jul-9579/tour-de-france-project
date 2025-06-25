@@ -1,0 +1,114 @@
+name,rider_url,team,team_url,bib_number,nationality,birthdate,place_of_birth,height,weight
+CARAPAZ Richard,richard-carapaz,EF Education - EasyPost (WT),team/ef-education-easypost-2025,,EC,1993-5-29,El Carmelo,1.7,62.0
+SWEENY Harry,harry-sweeny,EF Education - EasyPost (WT),team/ef-education-easypost-2025,,AU,1998-7-9,Warwick,1.86,75.0
+POWLESS Neilson,neilson-powless,EF Education - EasyPost (WT),team/ef-education-easypost-2025,,US,1996-9-3,Eglin,1.83,67.0
+HEALY Ben,ben-healy,EF Education - EasyPost (WT),team/ef-education-easypost-2025,,IE,2000-9-11,Kingswinford,1.75,65.0
+POGAČAR Tadej,tadej-pogacar,UAE Team Emirates - XRG (WT),team/uae-team-emirates-xrg-2025,,SI,1998-9-21,Klanec,1.76,66.0
+ALMEIDA João,joao-almeida,UAE Team Emirates - XRG (WT),team/uae-team-emirates-xrg-2025,,PT,1998-8-5,Caldas da Rainha,1.78,63.0
+YATES Adam,adam-yates,UAE Team Emirates - XRG (WT),team/uae-team-emirates-xrg-2025,,GB,1992-8-7,Bury,1.73,58.0
+SIVAKOV Pavel,pavel-sivakov,UAE Team Emirates - XRG (WT),team/uae-team-emirates-xrg-2025,,FR,1997-7-11,San Donà di Piave,1.88,70.0
+SOLER Marc,marc-soler,UAE Team Emirates - XRG (WT),team/uae-team-emirates-xrg-2025,,ES,1993-11-22,Vilanova i la Geltrú,1.86,68.0
+WELLENS Tim,tim-wellens,UAE Team Emirates - XRG (WT),team/uae-team-emirates-xrg-2025,,BE,1991-5-10,Sint-Truiden,1.82,71.0
+NARVÁEZ Jhonatan,jhonatan-narvaez,UAE Team Emirates - XRG (WT),team/uae-team-emirates-xrg-2025,,EC,1997-3-4,Playón de San Francisco,1.74,65.0
+NOVAK Domen,domen-novak,UAE Team Emirates - XRG (WT),team/uae-team-emirates-xrg-2025,,SI,1995-7-12,Dolenja vas,1.81,70.0
+POLITT Nils,nils-politt,UAE Team Emirates - XRG (WT),team/uae-team-emirates-xrg-2025,,DE,1994-3-6,Cologne,1.92,80.0
+GALL Felix,felix-gall,Decathlon AG2R La Mondiale Team (WT),team/decathlon-ag2r-la-mondiale-2025,,AT,1998-2-27,Nußdorf-Debant,1.8,66.0
+ROGLIČ Primož,primoz-roglic,Red Bull - BORA - hansgrohe (WT),team/red-bull-bora-hansgrohe-2025,,SI,1989-10-29,Trbovlje,1.77,65.0
+MARTÍNEZ Daniel Felipe,daniel-felipe-martinez,Red Bull - BORA - hansgrohe (WT),team/red-bull-bora-hansgrohe-2025,,CO,1996-4-25,Soacha,1.72,63.0
+VLASOV Aleksandr,aleksandr-vlasov,Red Bull - BORA - hansgrohe (WT),team/red-bull-bora-hansgrohe-2025,,RU,1996-4-23,Vyborg,1.86,68.0
+TRATNIK Jan,jan-tratnik,Red Bull - BORA - hansgrohe (WT),team/red-bull-bora-hansgrohe-2025,,SI,1990-2-23,Idrija,1.73,67.0
+VAN POPPEL Danny,danny-van-poppel,Red Bull - BORA - hansgrohe (WT),team/red-bull-bora-hansgrohe-2025,,NL,1993-7-26,Moergestel,1.84,82.0
+LIPOWITZ Florian,florian-lipowitz,Red Bull - BORA - hansgrohe (WT),team/red-bull-bora-hansgrohe-2025,,DE,2000-9-21,Laichingen,1.81,68.0
+EVENEPOEL Remco,remco-evenepoel,Soudal Quick-Step (WT),team/soudal-quick-step-2025,,BE,2000-1-25,Aalst,1.71,61.0
+MERLIER Tim,tim-merlier,Soudal Quick-Step (WT),team/soudal-quick-step-2025,,BE,1992-10-30,Wortegem-Petegem,1.88,76.0
+VAN LERBERGHE Bert,bert-van-lerberghe,Soudal Quick-Step (WT),team/soudal-quick-step-2025,,BE,1992-9-29,Kortrijk,1.9,83.0
+EENKHOORN Pascal,pascal-eenkhoorn,Soudal Quick-Step (WT),team/soudal-quick-step-2025,,NL,1997-2-8,Genemuiden,1.85,72.0
+PARET-PEINTRE Valentin,valentin-paret-peintre,Soudal Quick-Step (WT),team/soudal-quick-step-2025,,FR,2001-1-14,Annemasse,1.78,52.0
+VAN WILDER Ilan,ilan-van-wilder,Soudal Quick-Step (WT),team/soudal-quick-step-2025,,BE,2000-5-14,Jette,1.71,64.0
+ARANBURU Alex,alex-aranburu,Cofidis (WT),team/cofidis-2025,,ES,1995-9-19,Ezkio-Itsaso,1.78,63.0
+IZAGIRRE Ion,ion-izagirre,Cofidis (WT),team/cofidis-2025,,ES,1989-2-4,Ormaiztegi,1.73,60.0
+THOMAS Benjamin,benjamin-thomas-2,Cofidis (WT),team/cofidis-2025,,FR,1995-9-12,Lavaur,1.79,68.0
+BUCHMANN Emanuel,emanuel-buchmann,Cofidis (WT),team/cofidis-2025,,DE,1992-11-18, Ravensburg,1.8,59.0
+CARR Simon,simon-carr,Cofidis (WT),team/cofidis-2025,,GB,1998-8-29,Hereford,1.83,66.0
+VAN DER POEL Mathieu,mathieu-van-der-poel,Alpecin - Deceuninck (WT),team/alpecin-deceuninck-2025,,NL,1995-1-19,Kapellen,1.84,75.0
+PHILIPSEN Jasper,jasper-philipsen,Alpecin - Deceuninck (WT),team/alpecin-deceuninck-2025,,BE,1998-3-2,Mol,1.76,75.0
+GROVES Kaden,kaden-groves,Alpecin - Deceuninck (WT),team/alpecin-deceuninck-2025,,AU,1998-12-23,Gympie,1.76,76.0
+RIESEBEEK Oscar,oscar-riesebeek,Alpecin - Deceuninck (WT),team/alpecin-deceuninck-2025,,NL,1992-12-23,Ede,1.91,78.0
+VAUQUELIN Kévin,kevin-vauquelin,Arkéa - B&B Hotels (WT),team/arkea-b-b-hotels-2025,,FR,2001-4-26,Bayeux,1.76,69.0
+VAN AERT Wout,wout-van-aert,Team Visma | Lease a Bike (WT),team/team-visma-lease-a-bike-2025,,BE,1994-9-15,Herentals,1.9,78.0
+YATES Simon,simon-yates,Team Visma | Lease a Bike (WT),team/team-visma-lease-a-bike-2025,,GB,1992-8-7,Bury,1.72,58.0
+VINGEGAARD Jonas,jonas-vingegaard,Team Visma | Lease a Bike (WT),team/team-visma-lease-a-bike-2025,,DK,1996-12-10,Hillerslev,1.75,58.0
+JORGENSON Matteo,matteo-jorgenson,Team Visma | Lease a Bike (WT),team/team-visma-lease-a-bike-2025,,US,1999-7-1,Walnut Creek,1.9,69.0
+KUSS Sepp,sepp-kuss,Team Visma | Lease a Bike (WT),team/team-visma-lease-a-bike-2025,,US,1994-9-13,Durango,1.82,61.0
+CAMPENAERTS Victor,victor-campenaerts,Team Visma | Lease a Bike (WT),team/team-visma-lease-a-bike-2025,,BE,1991-10-28,Hoboken,1.73,68.0
+BENOOT Tiesj,tiesj-benoot,Team Visma | Lease a Bike (WT),team/team-visma-lease-a-bike-2025,,BE,1994-3-11,Ghent,1.9,72.0
+AFFINI Edoardo,edoardo-affini,Team Visma | Lease a Bike (WT),team/team-visma-lease-a-bike-2025,,IT,1996-6-24,Mantua,1.9,80.0
+KWIATKOWSKI Michał,michal-kwiatkowski,INEOS Grenadiers (WT),team/ineos-grenadiers-2025,,PL,1990-6-2,Chełmża,1.76,68.0
+RODRÍGUEZ Carlos,carlos-rodriguez-cano,INEOS Grenadiers (WT),team/ineos-grenadiers-2025,,ES,2001-2-2,Almuñécar,1.83,67.0
+GANNA Filippo,filippo-ganna,INEOS Grenadiers (WT),team/ineos-grenadiers-2025,,IT,1996-7-25,Verbania,1.93,83.0
+THOMAS Geraint,geraint-thomas,INEOS Grenadiers (WT),team/ineos-grenadiers-2025,,GB,1986-5-25,Cardiff,1.83,71.0
+ARENSMAN Thymen,thymen-arensman,INEOS Grenadiers (WT),team/ineos-grenadiers-2025,,NL,1999-12-4,Deil,1.9,68.0
+DE PLUS Laurens,laurens-de-plus,INEOS Grenadiers (WT),team/ineos-grenadiers-2025,,BE,1995-9-4, Aalst,1.89,67.0
+FOSS Tobias,tobias-foss,INEOS Grenadiers (WT),team/ineos-grenadiers-2025,,NO,1997-5-25,Vingrom,1.84,74.0
+GIRMAY Biniam,biniam-girmay,Intermarché - Wanty (WT),team/intermarche-wanty-2025,,ER,2000-4-2,Asmara,1.84,70.0
+PAGE Hugo,hugo-page,Intermarché - Wanty (WT),team/intermarche-wanty-2025,,FR,2001-7-24,Chartres,1.85,71.0
+REX Laurenz,laurenz-rex,Intermarché - Wanty (WT),team/intermarche-wanty-2025,,BE,1999-12-15,Marbourg,1.93,82.0
+ZIMMERMANN Georg,georg-zimmermann,Intermarché - Wanty (WT),team/intermarche-wanty-2025,,DE,1997-10-11,Augsburg,1.81,70.0
+GOOSSENS Kobe,kobe-goossens,Intermarché - Wanty (WT),team/intermarche-wanty-2025,,BE,1996-4-29,Leuven,1.78,64.0
+BARRÉ Louis,louis-barre,Intermarché - Wanty (WT),team/intermarche-wanty-2025,,FR,2000-4-6,Nantes,1.84,68.0
+MILAN Jonathan,jonathan-milan,Lidl - Trek (WT),team/lidl-trek-2025,,IT,2000-10-1,Tolmezzo,1.96,87.0
+SKJELMOSE Mattias,mattias-skjelmose-jensen,Lidl - Trek (WT),team/lidl-trek-2025,,DK,2000-9-26,Copenhagen,1.8,65.0
+STUYVEN Jasper,jasper-stuyven,Lidl - Trek (WT),team/lidl-trek-2025,,BE,1992-4-17, Leuven,1.87,78.0
+THEUNS Edward,edward-theuns,Lidl - Trek (WT),team/lidl-trek-2025,,BE,1991-4-30,Gent,1.83,72.0
+CONSONNI Simone,simone-consonni,Lidl - Trek (WT),team/lidl-trek-2025,,IT,1994-9-12,Ponte San Pietro,1.65,60.0
+BERNARD Julien,julien-bernard,Lidl - Trek (WT),team/lidl-trek-2025,,FR,1992-3-17,Nevers,1.76,60.0
+GEOGHEGAN HART Tao,tao-geoghegan-hart,Lidl - Trek (WT),team/lidl-trek-2025,,GB,1995-3-30,London,1.83,65.0
+NYS Thibau,thibau-nys,Lidl - Trek (WT),team/lidl-trek-2025,,BE,2002-11-12,Bonheiden,1.76,64.0
+GAUDU David,david-gaudu,Groupama - FDJ (WT),team/groupama-fdj-2025,,FR,1996-10-10,Landivisiau,1.72,53.0
+MARTIN Guillaume,guillaume-martin,Groupama - FDJ (WT),team/groupama-fdj-2025,,FR,1993-6-9,Paris,1.73,55.0
+MADOUAS Valentin,valentin-madouas,Groupama - FDJ (WT),team/groupama-fdj-2025,,FR,1996-7-12,Brest,1.79,71.0
+GRÉGOIRE Romain,romain-gregoire1,Groupama - FDJ (WT),team/groupama-fdj-2025,,FR,2003-1-21,Besançon,1.76,64.0
+PACHER Quentin,quentin-pacher,Groupama - FDJ (WT),team/groupama-fdj-2025,,FR,1992-1-6,Libourne,1.79,62.0
+CASTRILLO Pablo,pablo-castrillo-zapater,Movistar Team (WT),team/movistar-team-2025,,ES,2001-1-2,Jaca,1.83,74.0
+MAS Enric,enric-mas,Movistar Team (WT),team/movistar-team-2025,,ES,1995-1-7,Artà,1.77,61.0
+OLIVEIRA Nelson,nelson-oliveira,Movistar Team (WT),team/movistar-team-2025,,PT,1989-3-6,Anadia,1.8,67.0
+RUBIO Einer,einer-rubio,Movistar Team (WT),team/movistar-team-2025,,CO,1998-2-22,Chíquiza,1.64,56.0
+GAVIRIA Fernando,fernando-gaviria,Movistar Team (WT),team/movistar-team-2025,,CO,1994-8-19,La Ceja,1.81,71.0
+ROMEO Iván,ivan-romeo,Movistar Team (WT),team/movistar-team-2025,,ES,2003-8-16,Valladolid,1.93,75.0
+ROMO Javier,javier-romo,Movistar Team (WT),team/movistar-team-2025,,ES,1999-1-6,Villafranca de los Caballeros,1.84,70.0
+ONLEY Oscar,oscar-onley,Team Picnic PostNL (WT),team/team-picnic-postnl-2025,,GB,2002-10-13,Kelso,1.73,62.0
+VAN DEN BROEK Frank,frank-van-den-broek,Team Picnic PostNL (WT),team/team-picnic-postnl-2025,,NL,2000-12-28,Warmond,1.78,70.0
+ANDRESEN Tobias Lund,tobias-lund-andresen,Team Picnic PostNL (WT),team/team-picnic-postnl-2025,,DK,2002-8-20,Taastrup,1.81,69.0
+O'CONNOR Ben,ben-o-connor,Team Jayco AlUla (WT),team/team-jayco-alula-2025,,AU,1995-11-25,Subiaco,1.88,67.0
+DUNBAR Eddie,edward-irl-dunbar,Team Jayco AlUla (WT),team/team-jayco-alula-2025,,IE,1996-9-1,Banteer,1.7,57.0
+SCHMID Mauro,mauro-schmid,Team Jayco AlUla (WT),team/team-jayco-alula-2025,,CH,1999-12-4,Bülach,1.87,70.0
+GROENEWEGEN Dylan,dylan-groenewegen,Team Jayco AlUla (WT),team/team-jayco-alula-2025,,NL,1993-6-21,Amsterdam,1.77,70.0
+MEZGEC Luka,luka-mezgec,Team Jayco AlUla (WT),team/team-jayco-alula-2025,,SI,1988-6-27,Kranj,1.83,72.0
+REINDERS Elmar,elmar-reinders,Team Jayco AlUla (WT),team/team-jayco-alula-2025,,NL,1992-3-14,Emmen,1.9,78.1
+JUUL-JENSEN Christopher,christopher-juul-jensen,Team Jayco AlUla (WT),team/team-jayco-alula-2025,,DK,1989-7-6,Kilmacanogue,1.83,73.0
+MARTINEZ Lenny,lenny-martinez,Bahrain - Victorious (WT),team/bahrain-victorious-2025,,FR,2003-7-11,Cannes,1.68,52.0
+BUITRAGO Santiago,santiago-buitrago-sanchez,Bahrain - Victorious (WT),team/bahrain-victorious-2025,,CO,1999-9-26,Bogotá,1.74,59.0
+MOHORIČ Matej,matej-mohoric,Bahrain - Victorious (WT),team/bahrain-victorious-2025,,SI,1994-10-19,Kranj,1.86,71.0
+BAUHAUS Phil,phil-bauhaus,Bahrain - Victorious (WT),team/bahrain-victorious-2025,,DE,1994-7-8,Bocholt,1.84,75.0
+VELASCO Simone,simone-velasco,XDS Astana Team (WT),team/xds-astana-team-2025,,IT,1995-12-2,Bologna,1.7,59.0
+TEJADA Harold,harold-tejada,XDS Astana Team (WT),team/xds-astana-team-2025,,CO,1997-4-27,Pitalito,1.8,63.0
+CHAMPOUSSIN Clément,clement-champoussin,XDS Astana Team (WT),team/xds-astana-team-2025,,FR,1998-5-29,Nice,1.8,61.0
+DE LIE Arnaud,arnaud-de-lie,Lotto (PRT),team/lotto-2025,,BE,2002-3-16,Libramont,1.82,78.0
+VAN EETVELT Lennert,lennert-van-eetvelt,Lotto (PRT),team/lotto-2025,,BE,2001-7-17,Binkom,1.76,63.0
+DE BUYST Jasper,jasper-de-buyst,Lotto (PRT),team/lotto-2025,,BE,1993-11-24, Asse,1.79,72.0
+BERCKMOES Jenno,jenno-berckmoes,Lotto (PRT),team/lotto-2025,,BE,2001-2-4,Ghent,1.77,61.0
+ACKERMANN Pascal,pascal-ackermann,Israel - Premier Tech (PRT),team/israel-premier-tech-2025,,DE,1994-1-17,Kandel,1.8,78.0
+BLACKMORE Joseph,joseph-blackmore,Israel - Premier Tech (PRT),team/israel-premier-tech-2025,,GB,2003-2-23,Sidcup,1.81,66.0
+WOODS Michael,michael-woods,Israel - Premier Tech (PRT),team/israel-premier-tech-2025,,CA,1986-10-12,Toronto,1.75,62.0
+LUTSENKO Alexey,aleksey-lutsenko,Israel - Premier Tech (PRT),team/israel-premier-tech-2025,,KZ,1992-9-7,Petropavl,1.74,74.0
+STEWART Jake,jake-stewart,Israel - Premier Tech (PRT),team/israel-premier-tech-2025,,GB,1999-10-2,Coventry,1.79,66.0
+BURGAUDEAU Mathieu,mathieu-burgaudeau,Team TotalEnergies (PRT),team/team-totalenergies-2025,,FR,1998-11-17,Noirmoutier-en-l'Île,1.68,61.0
+ALAPHILIPPE Julian,julian-alaphilippe,Tudor Pro Cycling Team (PRT),team/tudor-pro-cycling-team-2025,,FR,1992-6-11,Saint-Amand-Montrond,1.73,62.0
+CORT Magnus,magnus-cort-nielsen,Uno-X Mobility (PRT),team/uno-x-mobility-2025,,DK,1993-1-16,Rønne,1.84,68.0
+WÆRENSKJOLD Søren,soren-waerenskjold,Uno-X Mobility (PRT),team/uno-x-mobility-2025,,NO,2000-3-12,Mandal,1.95,92.0
+LEKNESSUND Andreas,andreas-leknessund,Uno-X Mobility (PRT),team/uno-x-mobility-2025,,NO,1999-5-21,Tromsø,1.86,72.0
+JOHANNESSEN Tobias Halland,tobias-halland-johannessen,Uno-X Mobility (PRT),team/uno-x-mobility-2025,,NO,1999-8-23,Drøbak,1.76,62.0
+JOHANNESSEN Anders Halland,anders-halland-johannessen,Uno-X Mobility (PRT),team/uno-x-mobility-2025,,NO,1999-8-23,,1.76,
+ABRAHAMSEN Jonas,jonas-abrahamsen,Uno-X Mobility (PRT),team/uno-x-mobility-2025,,NO,1995-9-20,Skien,1.83,78.0
+HOELGAARD Markus,markus-hoelgaard,Uno-X Mobility (PRT),team/uno-x-mobility-2025,,NO,1994-10-4,Stavanger,1.88,74.0
+FREDHEIM Stian,stian-fredheim,Uno-X Mobility (PRT),team/uno-x-mobility-2025,,NO,2003-3-23,Kristiansand,1.84,72.0
