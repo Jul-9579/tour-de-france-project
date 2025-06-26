@@ -16,7 +16,7 @@ st.set_page_config(
 def load_data():
     """Loads the final prediction data from the CSV file."""
     try:
-        df = pd.read_csv(r'C:\Users\raclo\Documents\Bootcamp\tour-de-france-project\streamlit\tour_de_france_2025_app_data.csv')
+        df = pd.read_csv(r'C:\Users\raclo\Documents\Bootcamp\tour-de-france-project\app.py')
         return df
     except FileNotFoundError:
         # Display an error if the data file is not found
