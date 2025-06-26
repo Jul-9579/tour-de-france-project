@@ -1,0 +1,8 @@
+streamlit
+pandas
+wikipedia
+thefuzz
+python-Levenshtein
+Unidecode
+requests
+beautifulsoup4

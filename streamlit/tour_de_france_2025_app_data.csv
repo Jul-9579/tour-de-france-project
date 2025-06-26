@@ -1,0 +1,118 @@
+hybrid_position,rider_name,team,nationality,age,image_url,hybrid_score,predicted_position,uci_rank,pcs_rank
+1,POGAČAR Tadej,UAE Team Emirates - XRG (WT),SI,27,https://upload.wikimedia.org/wikipedia/commons/a/a9/2022_Tour_of_Slovenia_%28Stage_3%2C_Tadej_Poga%C4%8Dar_celebrating_victory_on_Celje_Castle_v2%29.jpg,1.0,1,1.0,1.0
+2,VINGEGAARD Jonas,Team Visma | Lease a Bike (WT),DK,29,,3.8000000000000003,2,7.0,6.0
+3,ALMEIDA João,UAE Team Emirates - XRG (WT),PT,27,,4.2,4,6.0,3.0
+4,EVENEPOEL Remco,Soudal Quick-Step (WT),BE,25,,7.4,11,2.0,2.0
+5,ROGLIČ Primož,Red Bull - BORA - hansgrohe (WT),SI,36,,8.600000000000001,8,8.0,11.0
+6,MAS Enric,Movistar Team (WT),ES,30,,8.8,7,11.0,12.0
+7,CARAPAZ Richard,EF Education - EasyPost (WT),EC,32,,13.600000000000001,15,9.0,14.0
+8,YATES Adam,UAE Team Emirates - XRG (WT),GB,33,,15.600000000000001,3,38.0,31.0
+9,O'CONNOR Ben,Team Jayco AlUla (WT),AU,30,,16.0,14,14.0,24.0
+10,YATES Simon,Team Visma | Lease a Bike (WT),GB,33,,17.0,12,19.0,30.0
+11,JORGENSON Matteo,Team Visma | Lease a Bike (WT),US,26,,21.999999999999996,23,20.0,21.0
+12,POWLESS Neilson,EF Education - EasyPost (WT),US,29,,27.200000000000003,32,22.0,18.0
+13,GAUDU David,Groupama - FDJ (WT),FR,29,,31.200000000000003,5,70.0,71.0
+14,ONLEY Oscar,Team Picnic PostNL (WT),GB,23,,31.200000000000003,38,29.0,13.0
+15,SKJELMOSE Mattias,Lidl - Trek (WT),DK,25,,31.400000000000002,30,28.0,39.0
+16,MARTIN Guillaume,Groupama - FDJ (WT),FR,32,,32.800000000000004,6,88.0,58.0
+17,RODRÍGUEZ Carlos,INEOS Grenadiers (WT),ES,24,,33.8,21,54.0,52.0
+18,ALAPHILIPPE Julian,Tudor Pro Cycling Team (PRT),FR,33,,36.0,19,57.0,66.0
+19,CHAMPOUSSIN Clément,XDS Astana Team (WT),FR,27,,36.6,29,55.0,41.0
+20,LIPOWITZ Florian,Red Bull - BORA - hansgrohe (WT),DE,25,,37.0,43,27.0,29.0
+21,BUITRAGO Santiago,Bahrain - Victorious (WT),CO,26,,38.2,24,71.0,48.0
+22,VAN AERT Wout,Team Visma | Lease a Bike (WT),BE,31,,38.4,61,4.0,5.0
+23,THOMAS Geraint,INEOS Grenadiers (WT),GB,39,,40.0,17,76.0,73.0
+24,ARANBURU Alex,Cofidis (WT),ES,30,,40.2,37,45.0,45.0
+25,SIVAKOV Pavel,UAE Team Emirates - XRG (WT),FR,28,,41.0,27,64.0,60.0
+26,VAN EETVELT Lennert,Lotto (PRT),BE,24,,42.8,46,39.0,37.0
+27,VAUQUELIN Kévin,Arkéa - B&B Hotels (WT),FR,24,,43.2,54,31.0,23.0
+28,MARTINEZ Lenny,Bahrain - Victorious (WT),FR,22,,45.2,35,62.0,59.0
+29,GALL Felix,Decathlon AG2R La Mondiale Team (WT),AT,27,,45.400000000000006,26,80.0,69.0
+30,BENOOT Tiesj,Team Visma | Lease a Bike (WT),BE,31,,49.6,34,58.0,88.0
+31,VAN DER POEL Mathieu,Alpecin - Deceuninck (WT),NL,30,,50.199999999999996,79,5.0,9.0
+32,GRÉGOIRE Romain,Groupama - FDJ (WT),FR,22,,52.2,64,36.0,33.0
+33,SCHMID Mauro,Team Jayco AlUla (WT),CH,26,,53.400000000000006,55,51.0,51.0
+34,GIRMAY Biniam,Intermarché - Wanty (WT),ER,25,,54.4,84,10.0,10.0
+35,HEALY Ben,EF Education - EasyPost (WT),IE,25,,55.599999999999994,60,34.0,64.0
+36,GANNA Filippo,INEOS Grenadiers (WT),IT,29,,55.6,82,16.0,16.0
+37,MADOUAS Valentin,Groupama - FDJ (WT),FR,29,,55.6,47,65.0,72.0
+38,CORT Magnus,Uno-X Mobility (PRT),DK,32,,56.99999999999999,77,32.0,22.0
+39,SCHACHMANN Maximilian,Soudal Quick-Step (WT),DE,31,,58.400000000000006,39,93.0,82.0
+40,PHILIPSEN Jasper,Alpecin - Deceuninck (WT),BE,27,,59.599999999999994,93,12.0,7.0
+41,WELLENS Tim,UAE Team Emirates - XRG (WT),BE,34,,59.8,63,63.0,47.0
+42,JOHANNESSEN Tobias Halland,Uno-X Mobility (PRT),NO,26,,61.800000000000004,49,84.0,78.0
+43,CASTRILLO Pablo,Movistar Team (WT),ES,24,,62.8,48,89.0,81.0
+44,NYS Thibau,Lidl - Trek (WT),BE,23,,65.0,58,68.0,83.0
+45,FOSS Tobias,INEOS Grenadiers (WT),NO,28,,65.2,62,83.0,57.0
+46,GROVES Kaden,Alpecin - Deceuninck (WT),AU,27,,71.4,91,30.0,54.0
+47,ROMO Javier,Movistar Team (WT),ES,26,,71.4,71,74.0,70.0
+48,VELASCO Simone,XDS Astana Team (WT),IT,30,,72.6,65,72.0,96.0
+49,NARVÁEZ Jhonatan,UAE Team Emirates - XRG (WT),EC,28,,73.19999999999999,68,67.0,95.0
+50,DE LIE Arnaud,Lotto (PRT),BE,23,,75.6,102,37.0,35.0
+51,MILAN Jonathan,Lidl - Trek (WT),IT,25,,76.6,105,40.0,28.0
+52,MERLIER Tim,Soudal Quick-Step (WT),BE,33,,79.6,116,33.0,17.0
+53,ANDRESEN Tobias Lund,Team Picnic PostNL (WT),DK,23,,87.4,99,83.0,57.0
+54,WÆRENSKJOLD Søren,Uno-X Mobility (PRT),NO,25,,95.39999999999999,101,100.0,74.0
+55,GROENEWEGEN Dylan,Team Jayco AlUla (WT),NL,32,,100.4,112,90.0,76.0
+56,WOODS Michael,Israel - Premier Tech (PRT),CA,39,,130.6,18,99.0,500.0
+57,SOLER Marc,UAE Team Emirates - XRG (WT),ES,32,,131.6,20,98.0,500.0
+58,IZAGIRRE Ion,Cofidis (WT),ES,36,,133.2,25,91.0,500.0
+59,VAN WILDER Ilan,Soudal Quick-Step (WT),BE,25,,150.2,57,500.0,80.0
+60,BUCHMANN Emanuel,Cofidis (WT),DE,33,,205.4,9,500.0,500.0
+61,KUSS Sepp,Team Visma | Lease a Bike (WT),US,31,,206.0,10,500.0,500.0
+62,VLASOV Aleksandr,Red Bull - BORA - hansgrohe (WT),RU,29,,207.8,13,500.0,500.0
+63,BENNETT George,Israel - Premier Tech (PRT),NZ,35,,209.6,16,500.0,500.0
+64,RUBIO Einer,Movistar Team (WT),CO,27,,213.2,22,500.0,500.0
+65,MARTÍNEZ Daniel Felipe,Red Bull - BORA - hansgrohe (WT),CO,29,,216.8,28,500.0,500.0
+66,ARENSMAN Thymen,INEOS Grenadiers (WT),NL,26,,218.6,31,500.0,500.0
+67,GEOGHEGAN HART Tao,Lidl - Trek (WT),GB,30,,219.8,33,500.0,500.0
+68,KWIATKOWSKI Michał,INEOS Grenadiers (WT),PL,35,,221.6,36,500.0,500.0
+69,MOHORIČ Matej,Bahrain - Victorious (WT),SI,31,,224.0,40,500.0,500.0
+70,DE PLUS Laurens,INEOS Grenadiers (WT),BE,30,,224.6,41,500.0,500.0
+71,PARET-PEINTRE Valentin,Soudal Quick-Step (WT),FR,24,,225.2,42,500.0,500.0
+72,LUTSENKO Alexey,Israel - Premier Tech (PRT),KZ,33,,226.4,44,500.0,500.0
+73,TEJADA Harold,XDS Astana Team (WT),CO,28,,227.0,45,500.0,500.0
+74,DUNBAR Eddie,Team Jayco AlUla (WT),IE,29,,230.0,50,500.0,500.0
+75,LEKNESSUND Andreas,Uno-X Mobility (PRT),NO,26,,230.6,51,500.0,500.0
+76,ZIMMERMANN Georg,Intermarché - Wanty (WT),DE,28,,231.2,52,500.0,500.0
+77,BURGAUDEAU Mathieu,Team TotalEnergies (PRT),FR,27,,231.8,53,500.0,500.0
+78,PACHER Quentin,Groupama - FDJ (WT),FR,33,,233.6,56,500.0,500.0
+79,OLIVEIRA Nelson,Movistar Team (WT),PT,36,,235.4,59,500.0,500.0
+80,CATTANEO Mattia,Soudal Quick-Step (WT),IT,35,,239.6,66,500.0,500.0
+81,CARR Simon,Cofidis (WT),GB,27,,240.2,67,500.0,500.0
+82,BERNARD Julien,Lidl - Trek (WT),FR,33,,241.4,69,500.0,500.0
+83,BLACKMORE Joseph,Israel - Premier Tech (PRT),GB,22,,242.0,70,500.0,500.0
+84,TRATNIK Jan,Red Bull - BORA - hansgrohe (WT),SI,35,,243.2,72,500.0,500.0
+85,GOOSSENS Kobe,Intermarché - Wanty (WT),BE,29,,243.8,73,500.0,500.0
+86,VAN DEN BROEK Frank,Team Picnic PostNL (WT),NL,25,,244.4,74,500.0,500.0
+87,STUYVEN Jasper,Lidl - Trek (WT),BE,33,,245.0,75,500.0,500.0
+88,CAMPENAERTS Victor,Team Visma | Lease a Bike (WT),BE,34,,245.6,76,500.0,500.0
+89,THOMAS Benjamin,Cofidis (WT),FR,30,,246.8,78,500.0,500.0
+90,NOVAK Domen,UAE Team Emirates - XRG (WT),SI,30,,248.0,80,500.0,500.0
+91,HOELGAARD Markus,Uno-X Mobility (PRT),NO,31,,248.6,81,500.0,500.0
+92,BARRÉ Louis,Intermarché - Wanty (WT),FR,25,,249.8,83,500.0,500.0
+93,ROMEO Iván,Movistar Team (WT),ES,22,,251.0,85,500.0,500.0
+94,MEZGEC Luka,Team Jayco AlUla (WT),SI,37,,251.6,86,500.0,500.0
+95,POLITT Nils,UAE Team Emirates - XRG (WT),DE,31,,252.2,87,500.0,500.0
+96,EENKHOORN Pascal,Soudal Quick-Step (WT),NL,28,,252.8,88,500.0,500.0
+97,VAN POPPEL Danny,Red Bull - BORA - hansgrohe (WT),NL,32,,253.4,89,500.0,500.0
+98,JOHANNESSEN Anders Halland,Uno-X Mobility (PRT),NO,26,,254.0,90,500.0,500.0
+99,DE BUYST Jasper,Lotto (PRT),BE,32,,255.2,92,500.0,500.0
+100,BERCKMOES Jenno,Lotto (PRT),BE,24,,256.4,94,500.0,500.0
+101,JUUL-JENSEN Christopher,Team Jayco AlUla (WT),DK,36,,257.0,95,500.0,500.0
+102,RIESEBEEK Oscar,Alpecin - Deceuninck (WT),NL,33,,257.6,96,500.0,500.0
+103,STEWART Jake,Israel - Premier Tech (PRT),GB,26,,258.2,97,500.0,500.0
+104,PAGE Hugo,Intermarché - Wanty (WT),FR,24,,258.8,98,500.0,500.0
+105,PEDERSEN Casper,Soudal Quick-Step (WT),DK,29,,260.0,100,500.0,500.0
+106,ACKERMANN Pascal,Israel - Premier Tech (PRT),DE,31,,261.8,103,500.0,500.0
+107,GAVIRIA Fernando,Movistar Team (WT),CO,31,,262.4,104,500.0,500.0
+108,ABRAHAMSEN Jonas,Uno-X Mobility (PRT),NO,30,,263.6,106,500.0,500.0
+109,CONSONNI Simone,Lidl - Trek (WT),IT,31,,264.2,107,500.0,500.0
+110,AFFINI Edoardo,Team Visma | Lease a Bike (WT),IT,29,,264.8,108,500.0,500.0
+111,SWEENY Harry,EF Education - EasyPost (WT),AU,27,,265.4,109,500.0,500.0
+112,FREDHEIM Stian,Uno-X Mobility (PRT),NO,22,,266.0,110,500.0,500.0
+113,REX Laurenz,Intermarché - Wanty (WT),BE,26,,266.6,111,500.0,500.0
+114,BAUHAUS Phil,Bahrain - Victorious (WT),DE,31,,267.8,113,500.0,500.0
+115,THEUNS Edward,Lidl - Trek (WT),BE,34,,268.4,114,500.0,500.0
+116,VAN LERBERGHE Bert,Soudal Quick-Step (WT),BE,33,,269.0,115,500.0,500.0
+117,REINDERS Elmar,Team Jayco AlUla (WT),NL,33,,270.2,117,500.0,500.0
