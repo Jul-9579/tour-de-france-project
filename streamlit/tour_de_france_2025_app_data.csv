@@ -1,6 +1,6 @@
 hybrid_position,rider_name,team,nationality,age,image_url,hybrid_score,predicted_position,uci_rank,pcs_rank
 1,POGAČAR Tadej,UAE Team Emirates - XRG (WT),SI,27,https://upload.wikimedia.org/wikipedia/commons/a/a9/2022_Tour_of_Slovenia_%28Stage_3%2C_Tadej_Poga%C4%8Dar_celebrating_victory_on_Celje_Castle_v2%29.jpg,1.0,1,1.0,1.0
-2,VINGEGAARD Jonas,Team Visma | Lease a Bike (WT),DK,29,,3.8000000000000003,2,7.0,6.0
+2,VINGEGAARD Jonas,Team Visma | Lease a Bike (WT),DK,29,https://upload.wikimedia.org/wikipedia/commons/2/2f/Jonas_Vingegaard_-_Vainqueur_du_Tour_de_France_2023.jpg,3.8000000000000003,2,7.0,6.0
 3,ALMEIDA João,UAE Team Emirates - XRG (WT),PT,27,,4.2,4,6.0,3.0
 4,EVENEPOEL Remco,Soudal Quick-Step (WT),BE,25,,7.4,11,2.0,2.0
 5,ROGLIČ Primož,Red Bull - BORA - hansgrohe (WT),SI,36,,8.600000000000001,8,8.0,11.0
