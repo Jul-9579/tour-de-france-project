@@ -4,4 +4,4 @@ wikipedia
 nltk
 plotly
 requests
-beautifulsoup4git
+beautifulsoup4
