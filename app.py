@@ -13,7 +13,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 
 # --- Page Configuration (Best to have this as the first st command) ---
@@ -218,43 +218,38 @@ def page_sentiment():
 def get_ranked_odds_data():
     """
     This function scrapes odds from oddset.de.
-    Revised to handle website structure changes and prevent TimeoutExceptions.
+    This version contains definitive selectors based on a deep analysis
+    of the website's new structure as of June 30, 2025.
     """
     url = "https://www.oddset.de/de/sports/radsport-10/wetten/welt-6/tour-de-france-160"
-    
+
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
 
     service = Service()
     driver = webdriver.Chrome(service=service, options=chrome_options)
-    
+
     rider_odds = []
     try:
         driver.get(url)
-        
-        try:
-            WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))).click()
-        except Exception:
-            st.info("Cookie consent banner not found or could not be clicked.")
 
-        # ---- START OF THE FIX ----
+        # Main container to wait for
         try:
-            # CORRECTED: Use a more stable selector for the main odds container.
-            rider_container_selector = "ms-event-list" 
+            # DEFINITIVE SELECTOR 1: The main wrapper for the entire betting market
+            container_selector = "div.market-wrapper"
             WebDriverWait(driver, 20).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, rider_container_selector))
+                EC.presence_of_element_located((By.CSS_SELECTOR, container_selector))
             )
         except TimeoutException:
-            # NEW: If the container isn't found, log an error and exit gracefully.
-            st.error("Data container not found on the website. The page structure has likely changed again.")
+            st.error("Data container (market-wrapper) not found. The website may be down or has changed drastically.")
             driver.quit()
-            return pd.DataFrame() # Return an empty DataFrame
-        # ---- END OF THE FIX ----
+            return pd.DataFrame()
 
+        # "Show More" button logic remains the same, it's a good robust check
         try:
             show_more_xpath = "//*[contains(text(), 'Mehr anzeigen')]"
             show_more_buttons = driver.find_elements(By.XPATH, show_more_xpath)
@@ -264,22 +259,31 @@ def get_ranked_odds_data():
         except Exception:
             pass
 
-        rider_option_selector = "ms-option.option"
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_all_elements_located((By.CSS_SELECTOR, rider_option_selector))
-        )
-        rider_options = driver.find_elements(By.CSS_SELECTOR, rider_option_selector)
+        # Find all rider elements using the new, correct selector
+        # DEFINITIVE SELECTOR 2: The custom element for each rider row
+        rider_row_selector = "ms-event-teasered"
         
-        for option in rider_options:
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, rider_row_selector))
+        )
+        rider_rows = driver.find_elements(By.CSS_SELECTOR, rider_row_selector)
+
+        for row in rider_rows:
             try:
-                rider_name = option.find_element(By.CSS_SELECTOR, "div.name").text.strip()
-                odds_value = option.find_element(By.CSS_SELECTOR, "div.value").text.strip()
+                # DEFINITIVE SELECTOR 3: The element containing the rider's name
+                rider_name = row.find_element(By.CSS_SELECTOR, "div.ms-event-name").text.strip()
+                
+                # DEFINITIVE SELECTOR 4: The specific element containing the odds value
+                odds_value = row.find_element(By.CSS_SELECTOR, "ms-outcome-odds-wrapper span.ms-outcome-odd").text.strip()
+                
                 if rider_name and odds_value:
                     rider_odds.append({"Rider": rider_name, "Odds": odds_value})
+            except NoSuchElementException:
+                # This handles cases where a row might be structured differently (e.g., an ad)
+                continue
             except Exception:
                 continue
     finally:
-        # This will run and close the driver even if errors occur above
         if 'driver' in locals() and driver.service.is_connectable():
             driver.quit()
 
