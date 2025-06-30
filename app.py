@@ -217,18 +217,15 @@ def page_sentiment():
 def get_ranked_odds_data():
     """
     This function scrapes odds from oddset.de.
-    Revised for enhanced robustness with dynamic waits and safer data conversion.
+    Revised to handle website structure changes and prevent TimeoutExceptions.
     """
-
     url = "https://www.oddset.de/de/sports/radsport-10/wetten/welt-6/tour-de-france-160"
     
-    # --- Deployment Configuration for Selenium ---
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
-    # CHANGED: Add a user-agent to appear more like a regular browser
     chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 
     service = Service()
@@ -238,31 +235,35 @@ def get_ranked_odds_data():
     try:
         driver.get(url)
         
-        # Wait for and click the cookie consent button (your existing logic is good)
         try:
             WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))).click()
-        except Exception as e:
-            st.info("Cookie consent banner not found or could not be clicked.") # More informative than pass
+        except Exception:
+            st.info("Cookie consent banner not found or could not be clicked.")
 
-        # CHANGED: Use a dynamic wait instead of a fixed sleep to wait for the main content
-        rider_container_selector = "ms-event-group.market"
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, rider_container_selector))
-        )
+        # ---- START OF THE FIX ----
+        try:
+            # CORRECTED: Use a more stable selector for the main odds container.
+            rider_container_selector = "ms-event-list" 
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, rider_container_selector))
+            )
+        except TimeoutException:
+            # NEW: If the container isn't found, log an error and exit gracefully.
+            st.error("Data container not found on the website. The page structure has likely changed again.")
+            driver.quit()
+            return pd.DataFrame() # Return an empty DataFrame
+        # ---- END OF THE FIX ----
 
-        # Click "Mehr anzeigen" buttons (your existing logic is good)
         try:
             show_more_xpath = "//*[contains(text(), 'Mehr anzeigen')]"
             show_more_buttons = driver.find_elements(By.XPATH, show_more_xpath)
             for button in show_more_buttons:
                 driver.execute_script("arguments[0].click();", button)
-                time.sleep(1) # A short sleep after a click is acceptable here
+                time.sleep(1)
         except Exception:
-            pass # It's okay if there are no "show more" buttons
+            pass
 
-        # Scrape the rider data
         rider_option_selector = "ms-option.option"
-        # CHANGED: Add a small wait to ensure all options rendered after potential clicks
         WebDriverWait(driver, 10).until(
             EC.presence_of_all_elements_located((By.CSS_SELECTOR, rider_option_selector))
         )
@@ -277,23 +278,21 @@ def get_ranked_odds_data():
             except Exception:
                 continue
     finally:
-        driver.quit()
+        # This will run and close the driver even if errors occur above
+        if 'driver' in locals() and driver.service.is_connectable():
+            driver.quit()
 
-    # --- Data Processing with enhanced safety ---
+    # Data processing part remains the same
     if not rider_odds:
+        st.warning("No rider odds were found after successfully loading the page. The selectors for rider names or odds may need an update.")
         return pd.DataFrame()
 
     df = pd.DataFrame(rider_odds)
     df_cleaned = df.drop_duplicates(subset=['Rider'])
     df_final = df_cleaned[df_cleaned['Rider'] != 'Alle anderen'].copy()
-
-    # CHANGED: Use pd.to_numeric for safer conversion. This handles non-numeric odds gracefully.
     df_final['Odds'] = df_final['Odds'].str.replace(',', '.', regex=False)
     df_final['Odds'] = pd.to_numeric(df_final['Odds'], errors='coerce')
-
-    # Drop any rows where odds could not be converted (e.g., if the text was "Suspended")
     df_final.dropna(subset=['Odds'], inplace=True)
-    
     df_final.sort_values(by="Odds", ascending=True, inplace=True)
     df_final.reset_index(drop=True, inplace=True)
     df_final['Rank'] = df_final.index + 1
