@@ -212,13 +212,12 @@ def page_sentiment():
 # PAGE 3: BETTING ODDS (Now with the final, working scraper)
 # ======================================================================================
 
-# Deployment-ready version of the data fetching function
-
+# Your deployment-ready function with enhancements
 @st.cache_data(ttl=86400)
 def get_ranked_odds_data():
     """
-    This function contains the final, working scraper logic,
-    now configured for deployment on Streamlit Community Cloud.
+    This function scrapes odds from oddset.de.
+    Revised for enhanced robustness with dynamic waits and safer data conversion.
     """
 
     url = "https://www.oddset.de/de/sports/radsport-10/wetten/welt-6/tour-de-france-160"
@@ -228,35 +227,45 @@ def get_ranked_odds_data():
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    # Some configurations need this to avoid GPU issues
-    chrome_options.add_argument("--disable-gpu") 
+    chrome_options.add_argument("--disable-gpu")
+    # CHANGED: Add a user-agent to appear more like a regular browser
+    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 
-    # We no longer use webdriver-manager in deployment
     service = Service()
-    
     driver = webdriver.Chrome(service=service, options=chrome_options)
     
     rider_odds = []
     try:
         driver.get(url)
-        time.sleep(3) # Give page time to load
-
+        
+        # Wait for and click the cookie consent button (your existing logic is good)
         try:
             WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))).click()
-            time.sleep(3)
-        except Exception:
-            pass 
+        except Exception as e:
+            st.info("Cookie consent banner not found or could not be clicked.") # More informative than pass
 
+        # CHANGED: Use a dynamic wait instead of a fixed sleep to wait for the main content
+        rider_container_selector = "ms-event-group.market"
+        WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, rider_container_selector))
+        )
+
+        # Click "Mehr anzeigen" buttons (your existing logic is good)
         try:
             show_more_xpath = "//*[contains(text(), 'Mehr anzeigen')]"
             show_more_buttons = driver.find_elements(By.XPATH, show_more_xpath)
             for button in show_more_buttons:
                 driver.execute_script("arguments[0].click();", button)
-                time.sleep(2)
+                time.sleep(1) # A short sleep after a click is acceptable here
         except Exception:
-            pass
+            pass # It's okay if there are no "show more" buttons
 
+        # Scrape the rider data
         rider_option_selector = "ms-option.option"
+        # CHANGED: Add a small wait to ensure all options rendered after potential clicks
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, rider_option_selector))
+        )
         rider_options = driver.find_elements(By.CSS_SELECTOR, rider_option_selector)
         
         for option in rider_options:
@@ -270,20 +279,26 @@ def get_ranked_odds_data():
     finally:
         driver.quit()
 
-    # Process the scraped data (unchanged)
+    # --- Data Processing with enhanced safety ---
     if not rider_odds:
         return pd.DataFrame()
 
     df = pd.DataFrame(rider_odds)
     df_cleaned = df.drop_duplicates(subset=['Rider'])
     df_final = df_cleaned[df_cleaned['Rider'] != 'Alle anderen'].copy()
-    df_final['Odds'] = df_final['Odds'].str.replace(',', '.').astype(float)
+
+    # CHANGED: Use pd.to_numeric for safer conversion. This handles non-numeric odds gracefully.
+    df_final['Odds'] = df_final['Odds'].str.replace(',', '.', regex=False)
+    df_final['Odds'] = pd.to_numeric(df_final['Odds'], errors='coerce')
+
+    # Drop any rows where odds could not be converted (e.g., if the text was "Suspended")
+    df_final.dropna(subset=['Odds'], inplace=True)
+    
     df_final.sort_values(by="Odds", ascending=True, inplace=True)
     df_final.reset_index(drop=True, inplace=True)
     df_final['Rank'] = df_final.index + 1
     
     return df_final[['Rank', 'Rider', 'Odds']]
-
 
 def display_betting_view():
     """
