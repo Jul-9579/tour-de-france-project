@@ -3,22 +3,12 @@ import pandas as pd
 import plotly.express as px
 import os
 import wikipedia
-import time
-
-# Selenium Imports
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
 
 # --- Page Configuration (Best to have this as the first st command) ---
 st.set_page_config(
-    page_title="Tour de France Analysis",
+    page_title="Tour de France Analysis", # CORRECTED: A more general title for the whole app
     page_icon="🚴",
-    layout="wide"
+    layout="wide" # CORRECTED: Changed to wide for a better dashboard feel
 )
 
 # ======================================================================================
@@ -28,8 +18,10 @@ def page_predictions():
     """
     This function now contains all the code for your first page.
     """
+    # --- MOVED: All the code for this page is now inside this function ---
     st.title("🏆 Rider Analysis & Predictions")
     
+    # --- Data Loading & Functions specific to this page ---
     @st.cache_data
     def load_prediction_data():
         try:
@@ -100,11 +92,12 @@ def page_predictions():
 
 
 # ======================================================================================
-# PAGE 2: MEDIA SENTIMENT ANALYSIS
+# PAGE 2: MEDIA SENTIMENT ANALYSIS (CORRECTED)
 # ======================================================================================
 def page_sentiment():
     """
     This function contains the corrected code for the sentiment analysis page.
+    The bug that limited the number of found cyclists has been removed.
     """
     @st.cache_data
     def load_and_process_data(articles_csv_path, cyclists_to_track):
@@ -126,6 +119,8 @@ def page_sentiment():
                         'publication_date': article['publication_date'],
                         'url': article['url']
                     })
+                    # BUG FIX: The 'break' statement that was here has been REMOVED.
+                    # The code will now continue to check for other cyclists in the same article.
         
         if not cyclist_mentions:
             return df_articles, None, None
@@ -139,6 +134,7 @@ def page_sentiment():
         
         return df_articles, df_ranking, df_mentions
 
+    # --- Page Content (No changes needed below) ---
     st.title("🚴 Media Sentiment Analysis")
     st.markdown("This page analyzes news articles from *cyclingnews.com* to understand the media portrayal of top riders.")
 
@@ -170,7 +166,7 @@ def page_sentiment():
 
     if df_ranking is None:
         st.error(f"Could not find or process `{ARTICLES_CSV}`. No mentions of tracked cyclists were found in the articles.", icon="🚨")
-        st.stop()
+        return
 
     col1, col2, col3 = st.columns(3)
     col1.metric("Total Articles Analyzed", f"{len(df_articles)}")
@@ -183,12 +179,9 @@ def page_sentiment():
         st.header("Top Rider Rankings")
         ranking_method = st.selectbox("Choose a ranking method:", ("Most Positive Coverage (Avg. Sentiment)", "Media Prominence (Most Mentions)", "Combined Score (Sentiment * Mentions)"), key="ranking_select_sentiment")
         sort_by_col = {'Most Positive Coverage (Avg. Sentiment)': 'average_sentiment', 'Media Prominence (Most Mentions)': 'mention_count', 'Combined Score (Sentiment * Mentions)': 'combined_score'}[ranking_method]
-        
+        df_display = df_ranking.sort_values(by=sort_by_col, ascending=False)
         if sort_by_col == 'average_sentiment':
             df_display = df_ranking[df_ranking['mention_count'] > 1].sort_values(by=sort_by_col, ascending=False)
-        else:
-            df_display = df_ranking.sort_values(by=sort_by_col, ascending=False)
-
 
         st.subheader(f"Top 10 by {ranking_method}")
         fig = px.bar(df_display.head(10), x='cyclist', y=sort_by_col, title="Top 10 Riders", labels={'cyclist': 'Cyclist'}, color=sort_by_col, color_continuous_scale=px.colors.sequential.Viridis)
@@ -209,118 +202,17 @@ def page_sentiment():
 
 
 # ======================================================================================
-# PAGE 3: BETTING ODDS (Now with the final, working scraper)
+# MAIN APP: NAVIGATION
 # ======================================================================================
 
-# Deployment-ready version of the data fetching function
+# A dictionary of pages
+pages = {
+    "Rider Analysis & Predictions": page_predictions,
+    "Media Sentiment Analysis": page_sentiment
+}
 
-@st.cache_data(ttl=86400)
-def get_ranked_odds_data():
-    """
-    This function contains the final, working scraper logic,
-    now configured for deployment on Streamlit Community Cloud.
-    """
-    st.toast("Fetching live odds... This may take up to a minute.", icon="⏳")
+st.sidebar.title("Navigation")
+selection = st.sidebar.radio("Go to", list(pages.keys()))
 
-    url = "https://www.oddset.de/de/sports/radsport-10/wetten/welt-6/tour-de-france-160"
-    
-    # --- Deployment Configuration for Selenium ---
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    # Some configurations need this to avoid GPU issues
-    chrome_options.add_argument("--disable-gpu") 
-
-    # We no longer use webdriver-manager in deployment
-    service = Service()
-    
-    driver = webdriver.Chrome(service=service, options=chrome_options)
-    
-    rider_odds = []
-    try:
-        driver.get(url)
-        time.sleep(3) # Give page time to load
-
-        try:
-            WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))).click()
-            time.sleep(3)
-        except Exception:
-            pass 
-
-        try:
-            show_more_xpath = "//*[contains(text(), 'Mehr anzeigen')]"
-            show_more_buttons = driver.find_elements(By.XPATH, show_more_xpath)
-            for button in show_more_buttons:
-                driver.execute_script("arguments[0].click();", button)
-                time.sleep(2)
-        except Exception:
-            pass
-
-        rider_option_selector = "ms-option.option"
-        rider_options = driver.find_elements(By.CSS_SELECTOR, rider_option_selector)
-        
-        for option in rider_options:
-            try:
-                rider_name = option.find_element(By.CSS_SELECTOR, "div.name").text.strip()
-                odds_value = option.find_element(By.CSS_SELECTOR, "div.value").text.strip()
-                if rider_name and odds_value:
-                    rider_odds.append({"Rider": rider_name, "Odds": odds_value})
-            except Exception:
-                continue
-    finally:
-        driver.quit()
-
-    # Process the scraped data (unchanged)
-    if not rider_odds:
-        return pd.DataFrame()
-
-    df = pd.DataFrame(rider_odds)
-    df_cleaned = df.drop_duplicates(subset=['Rider'])
-    df_final = df_cleaned[df_cleaned['Rider'] != 'Alle anderen'].copy()
-    df_final['Odds'] = df_final['Odds'].str.replace(',', '.').astype(float)
-    df_final.sort_values(by="Odds", ascending=True, inplace=True)
-    df_final.reset_index(drop=True, inplace=True)
-    df_final['Rank'] = df_final.index + 1
-    
-    return df_final[['Rank', 'Rider', 'Odds']]
-
-
-def display_betting_view():
-    """
-    This function displays the betting odds ranking UI.
-    """
-    st.title("🎰 Live Betting Odds Ranking")
-    st.write("This ranking is based on the winner odds from ODDSET.de. Data is refreshed once a day.")
-    
-    st.toast("Checking for fresh odds... (This may take a moment the first time each day)", icon="⏳")
-    ranked_df = get_ranked_odds_data()
-
-    if not ranked_df.empty:
-        top_n = st.slider("Select the number of top riders to display:", min_value=5, max_value=len(ranked_df), value=15, key="betting_slider")
-        st.dataframe(ranked_df.head(top_n), use_container_width=True)
-    else:
-        st.error("Could not retrieve betting odds at the moment. The website might be temporarily unavailable or has changed its structure.")
-
-
-# ==============================================================================
-# --- MAIN APPLICATION LAYOUT ---
-# ==============================================================================
-
-# Create the tabs
-tab1, tab2, tab3 = st.tabs(["🏆 Rider Predictions", "💬 Sentiment Analysis", "🎰 Betting Odds"])
-
-with tab1:
-    # Content for the Prediction Tab
-    # CORRECTED: Call the function you defined
-    page_predictions()
-
-with tab2:
-    # Content for the Sentiment Analysis Tab
-    # CORRECTED: Call the function you defined
-    page_sentiment()
-
-with tab3:
-    # Content for the Betting Odds Tab
-    # This one was already correct
-    display_betting_view()
+# Call the function for the selected page
+pages[selection]()
