@@ -16,6 +16,18 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 
+def convert_american_to_decimal(american_odds):
+    """Converts American odds to decimal odds."""
+    try:
+        american_odds = int(american_odds)
+        if american_odds > 0:
+            return (american_odds / 100) + 1
+        else:
+            return (100 / abs(american_odds)) + 1
+    except (ValueError, TypeError):
+        return None # Return None if conversion fails
+
+
 # --- Page Configuration (Best to have this as the first st command) ---
 st.set_page_config(
     page_title="Tour de France Analysis",
@@ -217,167 +229,101 @@ def page_sentiment():
 
 # Deployment-ready version of the data fetching function
 
-
 @st.cache_data(ttl=86400)
 
 def get_ranked_odds_data():
 
     """
-
     This function contains the final, working scraper logic,
-
     now configured for deployment on Streamlit Community Cloud.
-
     """
-
 
     url = "https://www.oddset.de/de/sports/radsport-10/wetten/welt-6/tour-de-france-160"
 
-   
 
     # --- Deployment Configuration for Selenium ---
-
     chrome_options = Options()
-
     chrome_options.add_argument("--headless")
-
     chrome_options.add_argument("--no-sandbox")
-
     chrome_options.add_argument("--disable-dev-shm-usage")
 
     # Some configurations need this to avoid GPU issues
-
     chrome_options.add_argument("--disable-gpu")
 
-
     # We no longer use webdriver-manager in deployment
-
     service = Service()
-
-   
-
     driver = webdriver.Chrome(service=service, options=chrome_options)
-
-   
 
     rider_odds = []
 
     try:
-
         driver.get(url)
-
         time.sleep(3) # Give page time to load
 
-
         try:
-
             WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))).click()
-
             time.sleep(3)
-
         except Exception:
-
             pass
-
 
         try:
-
             show_more_xpath = "//*[contains(text(), 'Mehr anzeigen')]"
-
             show_more_buttons = driver.find_elements(By.XPATH, show_more_xpath)
-
             for button in show_more_buttons:
-
                 driver.execute_script("arguments[0].click();", button)
-
                 time.sleep(2)
-
         except Exception:
-
             pass
-
 
         rider_option_selector = "ms-option.option"
-
         rider_options = driver.find_elements(By.CSS_SELECTOR, rider_option_selector)
 
-       
 
         for option in rider_options:
-
             try:
-
                 rider_name = option.find_element(By.CSS_SELECTOR, "div.name").text.strip()
-
                 odds_value = option.find_element(By.CSS_SELECTOR, "div.value").text.strip()
-
                 if rider_name and odds_value:
-
                     rider_odds.append({"Rider": rider_name, "Odds": odds_value})
-
             except Exception:
-
                 continue
-
     finally:
-
         driver.quit()
-
 
     # Process the scraped data (unchanged)
 
     if not rider_odds:
-
         return pd.DataFrame()
 
-
     df = pd.DataFrame(rider_odds)
-
     df_cleaned = df.drop_duplicates(subset=['Rider'])
-
     df_final = df_cleaned[df_cleaned['Rider'] != 'Alle anderen'].copy()
-
-    df_final['Odds'] = df_final['Odds'].str.replace(',', '.').astype(float)
-
+    df_final['Odds'] = df_final['Odds'].apply(convert_american_to_decimal)
+    df_final.dropna(subset=['Odds'], inplace=True) # Remove any rows where conversion failed
     df_final.sort_values(by="Odds", ascending=True, inplace=True)
-
     df_final.reset_index(drop=True, inplace=True)
-
     df_final['Rank'] = df_final.index + 1
 
-   
 
     return df_final[['Rank', 'Rider', 'Odds']]
 
 
-
 def display_betting_view():
-
     """
-
     This function displays the betting odds ranking UI.
-
     """
-
     st.title("🎰 Live Betting Odds Ranking")
-
     st.write("This ranking is based on the winner odds from ODDSET.de. Data is refreshed once a day.")
-
-   
+    st.caption("Odds are presented in American format (e.g., -250, +400). Lower positive numbers and all negative numbers indicate higher chances of winning.")
 
     st.toast("Checking for fresh odds... (This may take a moment the first time each day)", icon="⏳")
-
     ranked_df = get_ranked_odds_data()
 
-
     if not ranked_df.empty:
-
         top_n = st.slider("Select the number of top riders to display:", min_value=5, max_value=len(ranked_df), value=15, key="betting_slider")
-
         st.dataframe(ranked_df.head(top_n), use_container_width=True)
 
     else:
-
         st.error("Could not retrieve betting odds at the moment. The website might be temporarily unavailable or has changed its structure.")
 
 
