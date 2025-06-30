@@ -220,7 +220,6 @@ def get_ranked_odds_data():
     This function contains the final, working scraper logic,
     now configured for deployment on Streamlit Community Cloud.
     """
-    st.toast("Fetching live odds... This may take up to a minute.", icon="⏳")
 
     url = "https://www.oddset.de/de/sports/radsport-10/wetten/welt-6/tour-de-france-160"
     
