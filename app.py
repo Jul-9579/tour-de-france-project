@@ -214,110 +214,170 @@ def page_sentiment():
 # PAGE 3: BETTING ODDS (Now with the final, working scraper)
 # ======================================================================================
 
+
+# Deployment-ready version of the data fetching function
+
+
 @st.cache_data(ttl=86400)
+
 def get_ranked_odds_data():
+
     """
-    This function scrapes odds from oddset.de.
-    This version contains definitive selectors based on a deep analysis
-    of the website's new structure as of June 30, 2025.
+
+    This function contains the final, working scraper logic,
+
+    now configured for deployment on Streamlit Community Cloud.
+
     """
+
+
     url = "https://www.oddset.de/de/sports/radsport-10/wetten/welt-6/tour-de-france-160"
 
+   
+
+    # --- Deployment Configuration for Selenium ---
+
     chrome_options = Options()
+
     chrome_options.add_argument("--headless")
+
     chrome_options.add_argument("--no-sandbox")
+
     chrome_options.add_argument("--disable-dev-shm-usage")
+
+    # Some configurations need this to avoid GPU issues
+
     chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
+
+
+    # We no longer use webdriver-manager in deployment
 
     service = Service()
+
+   
+
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
+   
+
     rider_odds = []
+
     try:
+
         driver.get(url)
 
-        # Main container to wait for
-        try:
-            # DEFINITIVE SELECTOR 1: The main wrapper for the entire betting market
-            container_selector = "div.market-wrapper"
-            WebDriverWait(driver, 20).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, container_selector))
-            )
-        except TimeoutException:
-            st.error("Data container (market-wrapper) not found. The website may be down or has changed drastically.")
-            driver.quit()
-            return pd.DataFrame()
+        time.sleep(3) # Give page time to load
 
-        # "Show More" button logic remains the same, it's a good robust check
+
         try:
-            show_more_xpath = "//*[contains(text(), 'Mehr anzeigen')]"
-            show_more_buttons = driver.find_elements(By.XPATH, show_more_xpath)
-            for button in show_more_buttons:
-                driver.execute_script("arguments[0].click();", button)
-                time.sleep(1)
+
+            WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))).click()
+
+            time.sleep(3)
+
         except Exception:
+
             pass
 
-        # Find all rider elements using the new, correct selector
-        # DEFINITIVE SELECTOR 2: The custom element for each rider row
-        rider_row_selector = "ms-event-teasered"
-        
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_all_elements_located((By.CSS_SELECTOR, rider_row_selector))
-        )
-        rider_rows = driver.find_elements(By.CSS_SELECTOR, rider_row_selector)
 
-        for row in rider_rows:
+        try:
+
+            show_more_xpath = "//*[contains(text(), 'Mehr anzeigen')]"
+
+            show_more_buttons = driver.find_elements(By.XPATH, show_more_xpath)
+
+            for button in show_more_buttons:
+
+                driver.execute_script("arguments[0].click();", button)
+
+                time.sleep(2)
+
+        except Exception:
+
+            pass
+
+
+        rider_option_selector = "ms-option.option"
+
+        rider_options = driver.find_elements(By.CSS_SELECTOR, rider_option_selector)
+
+       
+
+        for option in rider_options:
+
             try:
-                # DEFINITIVE SELECTOR 3: The element containing the rider's name
-                rider_name = row.find_element(By.CSS_SELECTOR, "div.ms-event-name").text.strip()
-                
-                # DEFINITIVE SELECTOR 4: The specific element containing the odds value
-                odds_value = row.find_element(By.CSS_SELECTOR, "ms-outcome-odds-wrapper span.ms-outcome-odd").text.strip()
-                
-                if rider_name and odds_value:
-                    rider_odds.append({"Rider": rider_name, "Odds": odds_value})
-            except NoSuchElementException:
-                # This handles cases where a row might be structured differently (e.g., an ad)
-                continue
-            except Exception:
-                continue
-    finally:
-        if 'driver' in locals() and driver.service.is_connectable():
-            driver.quit()
 
-    # Data processing part remains the same
+                rider_name = option.find_element(By.CSS_SELECTOR, "div.name").text.strip()
+
+                odds_value = option.find_element(By.CSS_SELECTOR, "div.value").text.strip()
+
+                if rider_name and odds_value:
+
+                    rider_odds.append({"Rider": rider_name, "Odds": odds_value})
+
+            except Exception:
+
+                continue
+
+    finally:
+
+        driver.quit()
+
+
+    # Process the scraped data (unchanged)
+
     if not rider_odds:
-        st.warning("No rider odds were found after successfully loading the page. The selectors for rider names or odds may need an update.")
+
         return pd.DataFrame()
 
+
     df = pd.DataFrame(rider_odds)
+
     df_cleaned = df.drop_duplicates(subset=['Rider'])
+
     df_final = df_cleaned[df_cleaned['Rider'] != 'Alle anderen'].copy()
-    df_final['Odds'] = df_final['Odds'].str.replace(',', '.', regex=False)
-    df_final['Odds'] = pd.to_numeric(df_final['Odds'], errors='coerce')
-    df_final.dropna(subset=['Odds'], inplace=True)
+
+    df_final['Odds'] = df_final['Odds'].str.replace(',', '.').astype(float)
+
     df_final.sort_values(by="Odds", ascending=True, inplace=True)
+
     df_final.reset_index(drop=True, inplace=True)
+
     df_final['Rank'] = df_final.index + 1
-    
+
+   
+
     return df_final[['Rank', 'Rider', 'Odds']]
 
+
+
 def display_betting_view():
+
     """
+
     This function displays the betting odds ranking UI.
+
     """
+
     st.title("🎰 Live Betting Odds Ranking")
+
     st.write("This ranking is based on the winner odds from ODDSET.de. Data is refreshed once a day.")
-    
+
+   
+
     st.toast("Checking for fresh odds... (This may take a moment the first time each day)", icon="⏳")
+
     ranked_df = get_ranked_odds_data()
 
+
     if not ranked_df.empty:
+
         top_n = st.slider("Select the number of top riders to display:", min_value=5, max_value=len(ranked_df), value=15, key="betting_slider")
+
         st.dataframe(ranked_df.head(top_n), use_container_width=True)
+
     else:
+
         st.error("Could not retrieve betting odds at the moment. The website might be temporarily unavailable or has changed its structure.")
 
 
