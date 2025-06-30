@@ -314,7 +314,7 @@ def display_betting_view():
     """
     st.title("🎰 Live Betting Odds Ranking")
     st.write("This ranking is based on the winner odds from ODDSET.de. Data is refreshed once a day.")
-    st.caption("Odds are presented in American format (e.g., -250, +400). Lower positive numbers and all negative numbers indicate higher chances of winning.")
+    st.caption("Odds are presented in European decimal format. The lower the number, the higher the chances of winning (e.g., 1.35 is more likely than 5.50).")
 
     st.toast("Checking for fresh odds... (This may take a moment the first time each day)", icon="⏳")
     ranked_df = get_ranked_odds_data()
